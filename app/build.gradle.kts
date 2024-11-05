@@ -56,4 +56,15 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.ui)
+    implementation(libs.ui.tooling)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.activity.compose.v172)
+    implementation( libs.androidx.constraintlayout.compose)
+    implementation( libs.androidx.navigation.compose)
+    implementation( libs.ui.tooling.preview)
 }
