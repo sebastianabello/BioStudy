@@ -18,6 +18,9 @@ navigationCompose = "2.8.3"
 ui = "1.7.5"
 uiTooling = "1.7.5"
 uiToolingPreview = "1.7.5"
+appcompat = "1.6.1"
+materialVersion = "1.10.0"
+activity = "1.9.3"
 
 [libraries]
 androidx-activity-compose-v172 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
@@ -44,6 +47,9 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooling" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
