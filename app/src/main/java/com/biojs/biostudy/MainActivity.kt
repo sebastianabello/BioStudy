@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.BottomNavigationItem
@@ -57,10 +60,10 @@ fun MyUi() {
         FloatingActionButton(
             onClick = {},
             contentColor = Color.White,
-            backgroundColor = Color(android.graphics.Color.parseColor("#fe5b52"))
+            backgroundColor = Color(android.graphics.Color.parseColor("#64a0a0"))
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.shopping_cart),
+                painter = painterResource(id = R.drawable.book),
                 contentDescription = "add",
                 modifier = Modifier
                     .height(30.dp)
@@ -78,7 +81,9 @@ fun MyUi() {
                 .fillMaxSize()
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState())
-                .padding(paddingValues = it)
+                .padding(paddingValues = it),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             NameProfile()
             Title()
@@ -89,13 +94,135 @@ fun MyUi() {
 
 @Composable
 fun Buttons() {
-    TODO("Not yet implemented")
+    Row(
+        modifier = Modifier
+            .padding(top = 24.dp)
+            .fillMaxWidth()
+    ) {
+        Column(
+            Modifier
+                .weight(0.5f)
+                .height(170.dp)
+                .padding(end = 12.dp)
+                .background(
+                    color = Color(android.graphics.Color.parseColor("#94ec04")),
+                    shape = RoundedCornerShape(20.dp)
+                )
+                .padding(top = 16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.btn_1), contentDescription = null,
+                modifier = Modifier
+                    .height(65.dp)
+                    .width(65.dp)
+            )
+            Text(
+                "Developing",
+                fontSize = 18.sp,
+                modifier = Modifier.padding(top = 12.dp),
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+
+        Column(
+            Modifier
+                .weight(0.5f)
+                .height(170.dp)
+                .padding(start = 12.dp)
+                .background(
+                    color = Color(android.graphics.Color.parseColor("#f8f8f8")),
+                    shape = RoundedCornerShape(20.dp)
+                )
+                .padding(top = 16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.btn_1), contentDescription = null,
+                modifier = Modifier
+                    .height(65.dp)
+                    .width(65.dp)
+            )
+            Text(
+                "Developing",
+                fontSize = 18.sp,
+                modifier = Modifier.padding(top = 12.dp),
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+    }
+
+    Row(
+        modifier = Modifier
+            .padding(top = 24.dp)
+            .fillMaxWidth()
+    ) {
+        Column(
+            Modifier
+                .weight(0.5f)
+                .height(170.dp)
+                .padding(end = 12.dp)
+                .background(
+                    color = Color(android.graphics.Color.parseColor("#f8f8f8")),
+                    shape = RoundedCornerShape(20.dp)
+                )
+                .padding(top = 16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.btn_1), contentDescription = null,
+                modifier = Modifier
+                    .height(65.dp)
+                    .width(65.dp)
+            )
+            Text(
+                "Developing",
+                fontSize = 18.sp,
+                modifier = Modifier.padding(top = 12.dp),
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+
+        Column(
+            Modifier
+                .weight(0.5f)
+                .height(170.dp)
+                .padding(start = 12.dp)
+                .background(
+                    color = Color(android.graphics.Color.parseColor("#f8f8f8")),
+                    shape = RoundedCornerShape(20.dp)
+                )
+                .padding(top = 16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.btn_1), contentDescription = null,
+                modifier = Modifier
+                    .height(65.dp)
+                    .width(65.dp)
+            )
+            Text(
+                "Developing",
+                fontSize = 18.sp,
+                modifier = Modifier.padding(top = 12.dp),
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+    }
 }
 
 @Composable
 fun Title() {
     Text(
-        "What Would you like to\n learn today?",
+        "What do you want to\n remember about?",
         color = Color.Black,
         fontSize = 26.sp,
         fontWeight = FontWeight.Bold,
@@ -127,7 +254,7 @@ fun NameProfile() {
                 .align(alignment = Alignment.CenterVertically)
         ) {
             Text(
-                text = "Hi, Alex",
+                text = "Hi, User",
                 color = Color.Black,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.SemiBold
@@ -144,7 +271,11 @@ fun MyBottomBar() {
         mutableStateOf("Profile")
     }
 
-    BottomAppBar(cutoutShape = CircleShape, backgroundColor = Color(android.graphics.Color.parseColor("#f8f8f8")), elevation = 3.dp) {
+    BottomAppBar(
+        cutoutShape = CircleShape,
+        backgroundColor = Color(android.graphics.Color.parseColor("#f8f8f8")),
+        elevation = 3.dp
+    ) {
         bottomMenuItemsList.forEachIndexed { index, bottomMenuItem ->
             if (index == 2) {
                 BottomNavigationItem(

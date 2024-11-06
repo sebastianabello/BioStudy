@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -65,7 +66,7 @@ class IntroActivity : ComponentActivity() {
                         top.linkTo(img.bottom)
                     })
 
-            Text(text = "Create and Manage \n" + "your learning", fontSize = 26.sp,
+            Text(text = "Observe and analyze \n" + "how it is done", fontSize = 26.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 textAlign = TextAlign.Center,
@@ -87,10 +88,11 @@ class IntroActivity : ComponentActivity() {
                     }
             )
 
-            Image(painter = painterResource(id = R.drawable.today),
+            Image(painter = painterResource(id = R.drawable.welcome),
                 contentDescription = "",
                 modifier = Modifier
-                    .padding(top = 16.dp)
+                    .padding(top = 4.dp)
+                    .size(148.dp)
                     .constrainAs(today) {
                         end.linkTo(parent.end)
                         start.linkTo(parent.start)
