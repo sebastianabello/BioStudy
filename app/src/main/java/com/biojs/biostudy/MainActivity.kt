@@ -55,8 +55,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.d("MainActivity", "MainActivity started")
-
         setContent {
             MyUi()
         }
@@ -160,7 +158,7 @@ fun Buttons() {
                 )
                 .padding(top = 16.dp)
                 .clickable {
-                    context.startActivity(Intent(context, VideosActivity::class.java))
+                    context.startActivity(Intent(context, GuidesActivity::class.java))
                 },
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally

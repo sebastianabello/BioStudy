@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -11,12 +12,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BioStudy"
         tools:targetApi="31">
-
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.BioStudy" />
+        <activity
+            android:name=".SupportActivity"
+            android:exported="false"
+            android:label="@string/title_activity_support"
+            android:theme="@style/Theme.BioStudy" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.BioStudy" />
+        <activity
+            android:name=".GuidesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_guides"
+            android:theme="@style/Theme.BioStudy" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".IntroActivity"
             android:exported="true"
@@ -24,12 +42,10 @@
             android:theme="@style/Theme.BioStudy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
     </application>
 
 </manifest>
