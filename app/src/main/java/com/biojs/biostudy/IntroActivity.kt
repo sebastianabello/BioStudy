@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,6 +30,8 @@ class IntroActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Log.d("IntroActivity", "IntroActivity started")
+
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
@@ -38,12 +41,13 @@ class IntroActivity : ComponentActivity() {
             Intro()
         }
 
-        // Este Handler redirige a MainActivity después de 3 segundos (3000 ms)
         Handler(Looper.getMainLooper()).postDelayed({
+            Log.d("IntroActivity", "Navigating to MainActivity")
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish() // Cierra IntroActivity para que no regrese al pulsar 'back'
-        }, 3000) // Tiempo en milisegundos
+            finish()
+        }, 2000)
+
     }
 
     @Preview

@@ -1,9 +1,16 @@
 package com.biojs.biostudy
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController
+import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,8 +34,6 @@ import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,17 +50,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.biojs.biostudy.ui.theme.BioStudyTheme
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d("MainActivity", "MainActivity started")
+
         setContent {
-            BioStudyTheme {
-                Surface(color = MaterialTheme.colorScheme.background) {
-                    Text(text = "Welcome to MainActivity")
-                }
-            }
+            MyUi()
         }
     }
 }
@@ -107,6 +110,9 @@ fun MyUi() {
 
 @Composable
 fun Buttons() {
+
+    val context = LocalContext.current
+
     Row(
         modifier = Modifier
             .padding(top = 80.dp)
@@ -121,7 +127,10 @@ fun Buttons() {
                     color = Color(android.graphics.Color.parseColor("#87b1e3")),
                     shape = RoundedCornerShape(20.dp)
                 )
-                .padding(top = 16.dp),
+                .padding(top = 16.dp)
+                .clickable {
+                    context.startActivity(Intent(context, GuidesActivity::class.java))
+                },
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -149,7 +158,10 @@ fun Buttons() {
                     color = Color(android.graphics.Color.parseColor("#ff8a8a")),
                     shape = RoundedCornerShape(20.dp)
                 )
-                .padding(top = 16.dp),
+                .padding(top = 16.dp)
+                .clickable {
+                    context.startActivity(Intent(context, VideosActivity::class.java))
+                },
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
