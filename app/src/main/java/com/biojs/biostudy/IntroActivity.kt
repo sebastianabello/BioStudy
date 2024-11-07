@@ -1,6 +1,9 @@
 package com.biojs.biostudy
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 
-
 class IntroActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,12 @@ class IntroActivity : ComponentActivity() {
             Intro()
         }
 
+        // Este Handler redirige a MainActivity después de 3 segundos (3000 ms)
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // Cierra IntroActivity para que no regrese al pulsar 'back'
+        }, 3000) // Tiempo en milisegundos
     }
 
     @Preview
@@ -99,12 +107,7 @@ class IntroActivity : ComponentActivity() {
                         top.linkTo(text.bottom)
                         bottom.linkTo(img2.top)
                     }
-
             )
-
-
         }
-
     }
 }
-
