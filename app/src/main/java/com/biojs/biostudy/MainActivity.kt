@@ -1,14 +1,7 @@
 package com.biojs.biostudy
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.view.WindowInsets
-import android.view.WindowInsetsController
-import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -24,11 +17,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -36,14 +26,9 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -54,48 +39,45 @@ import androidx.compose.ui.unit.sp
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             MyUi()
         }
     }
 }
 
-@Preview
 @Composable
 fun MyUi() {
     val scaffoldState = rememberScaffoldState()
 
-    Scaffold(bottomBar = {
-        MyBottomBar()
-    }, floatingActionButton = {
-        FloatingActionButton(
-            onClick = {},
-            contentColor = Color.White,
-            backgroundColor = Color(android.graphics.Color.parseColor("#d6d7da"))
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.notes),
-                contentDescription = "add",
-                tint = Color(android.graphics.Color.parseColor("#727376")),
-                modifier = Modifier
-                    .height(30.dp)
-                    .width(30.dp)
-            )
-        }
-    },
+    Scaffold(
+        bottomBar = { BottomNavBar() },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {},
+                contentColor = Color.White,
+                backgroundColor = Color(android.graphics.Color.parseColor("#d6d7da"))
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.notes),
+                    contentDescription = "add",
+                    tint = Color(android.graphics.Color.parseColor("#727376")),
+                    modifier = Modifier
+                        .height(30.dp)
+                        .width(30.dp)
+                )
+            }
+        },
         scaffoldState = scaffoldState,
         isFloatingActionButtonDocked = true,
         floatingActionButtonPosition = FabPosition.Center
-
-    ) {
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = Color(android.graphics.Color.parseColor("#fafbfd")))
                 .padding(28.dp)
                 .verticalScroll(rememberScrollState())
-                .padding(paddingValues = it),
+                .padding(paddingValues),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -108,7 +90,6 @@ fun MyUi() {
 
 @Composable
 fun Buttons() {
-
     val context = LocalContext.current
 
     Row(
@@ -325,7 +306,8 @@ fun NameProfile() {
             .fillMaxWidth()
             .padding(top = 12.dp)
     ) {
-        Image(painter = painterResource(id = R.drawable.user),
+        Image(
+            painter = painterResource(id = R.drawable.user),
             contentDescription = null,
             modifier = Modifier
                 .height(55.dp)
@@ -351,96 +333,8 @@ fun NameProfile() {
     }
 }
 
+@Preview
 @Composable
-fun MyBottomBar() {
-    val bottomMenuItemsList = prepareBottomMenu()
-    val contextForToast = LocalContext.current.applicationContext
-    var selectedItem by remember {
-        mutableStateOf("Profile")
-    }
-
-    BottomAppBar(
-        cutoutShape = CircleShape,
-        backgroundColor = Color(android.graphics.Color.parseColor("#fafbfd")),
-        elevation = 3.dp
-    ) {
-        bottomMenuItemsList.forEachIndexed { index, bottomMenuItem ->
-            if (index == 2) {
-                BottomNavigationItem(
-                    selected = false,
-                    onClick = {},
-                    icon = {},
-                    enabled = false
-                )
-            }
-            BottomNavigationItem(
-                selected = (selectedItem == bottomMenuItem.label),
-                onClick = {
-                    selectedItem = bottomMenuItem.label
-                    Toast.makeText(contextForToast, bottomMenuItem.label, Toast.LENGTH_SHORT).show()
-                },
-                icon = {
-                    Icon(
-                        painter = bottomMenuItem.icon,
-                        tint = Color.Gray,
-                        contentDescription = bottomMenuItem.label,
-                        modifier = Modifier
-                            .height(20.dp)
-                            .width(20.dp)
-                    )
-                },
-                label = {
-                    Text(
-                        text = bottomMenuItem.label,
-                        modifier = Modifier.padding(top = 14.dp),
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 12.sp
-
-                    )
-                },
-                alwaysShowLabel = true,
-                enabled = true
-            )
-
-        }
-    }
-
-}
-
-data class BottomMenuItem(val label: String, val icon: Painter)
-
-@Composable
-fun prepareBottomMenu(): List<BottomMenuItem> {
-    val bottomMenuItemList = arrayListOf<BottomMenuItem>()
-
-    bottomMenuItemList.add(
-        BottomMenuItem(
-            label = "Home",
-            icon = painterResource(id = R.drawable.home)
-        )
-    )
-
-    bottomMenuItemList.add(
-        BottomMenuItem(
-            label = "Profile",
-            icon = painterResource(id = R.drawable.profile)
-        )
-    )
-
-    bottomMenuItemList.add(
-        BottomMenuItem(
-            label = "Support",
-            icon = painterResource(id = R.drawable.support)
-        )
-    )
-
-    bottomMenuItemList.add(
-        BottomMenuItem(
-            label = "Settings",
-            icon = painterResource(id = R.drawable.settings)
-        )
-    )
-
-    return bottomMenuItemList
-
+fun PreviewMyUi() {
+    MyUi()
 }

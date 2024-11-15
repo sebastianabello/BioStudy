@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.biojs.biostudy.ui.theme.BioStudyTheme
 
-class ProfileActivity : ComponentActivity() {
+class NotesActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -23,7 +23,7 @@ class ProfileActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     Text(
-                        text = "Profile",
+                        text = "Notes",
                         modifier = Modifier
                             .padding(innerPadding)
                     )

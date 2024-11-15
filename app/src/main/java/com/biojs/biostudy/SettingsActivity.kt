@@ -16,32 +16,19 @@ import com.biojs.biostudy.ui.theme.BioStudyTheme
 class SettingsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             BioStudyTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting4(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                Scaffold(
+                    bottomBar = { BottomNavBar() },
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    Text(
+                        text = "Settings",
+                        modifier = Modifier
+                            .padding(innerPadding)
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting4(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview4() {
-    BioStudyTheme {
-        Greeting4("Android")
     }
 }
